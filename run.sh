@@ -1,11 +1,15 @@
 #!/bin/sh
 
-if [[ -z "${GANDI_PAT}" && ! -z ${APIKEY} ]]; then
-  GANDI_PAT=${APIKEY}
+if [[ ! -z ${APIKEY} ]]; then
+  GANDI_AUTH="Apikey ${APIKEY}"
 fi
 
-if [[ -z "${GANDI_PAT}" || -z "${RECORD_LIST}" || -z "${DOMAIN}" ]]; then
-  echo "[ERROR] Mandatory variable GANDI_PAT, DOMAIN or RECORD_LIST not defined."
+if [[ ! -z ${GANDI_PAT} ]]; then
+  GANDI_AUTH="Bearer ${GANDI_PAT}"
+fi
+
+if [[ -z "${GANDI_AUTH}" || -z "${RECORD_LIST}" || -z "${DOMAIN}" ]]; then
+  echo "[ERROR] Mandatory variable GANDI_PAT, APIKEY, DOMAIN or RECORD_LIST not defined."
   exit 1
 fi
 
