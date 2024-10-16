@@ -5,7 +5,7 @@
 # prevent shell to expand wildcard record
 set -f
 
-set -x
+#set -x
 
 API="https://api.gandi.net/v5/livedns/"
 IP_SERVICE="http://me.gandi.net"
